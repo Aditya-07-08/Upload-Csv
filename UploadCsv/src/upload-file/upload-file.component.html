@@ -1,0 +1,25 @@
+<div class="main">
+    <div class="main-container">
+        <div class="main-heading">
+            <h1>Upload CSV</h1>
+        </div>
+        <div class="upload-by-file">
+            <label for="input-file" class="upload-csv">
+                <input type="file" accept=".csv" id="input-file" hidden (change)="onFileSelected($event)">
+                <div class="content-section">
+                    <img src="upload.png" width="auto" height="80px">
+                    <h3>Select a CSV file to Upload</h3>
+                    <h4>or drag and dropit here</h4>
+                </div>
+            </label>
+        </div>
+        <div class="upload-by-url-main">
+            <h3>Or upload from URL</h3>
+            <div class="upload-by-url">
+                <input #fileInput type="text" [(ngModel)]="csvUrl">
+                <button (click)="fetchCsv()">Upload</button>
+            </div>
+
+        </div>
+    </div>
+</div>

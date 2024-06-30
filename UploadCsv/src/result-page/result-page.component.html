@@ -1,0 +1,35 @@
+
+<div class="container">
+  <div class="arrow">
+    <img src="tickcircle.png" width="80px" height="80px">
+  </div>
+  <div class="success-message">Data imported successfully</div>
+  <div class="summary-link">
+    <button (click)="toggleSummary()">Import Summary</button>
+  </div>
+  @if(showSummary){
+  <div class="summary-table-container">
+    <h3>Employee Details</h3>
+    <table class="summary-table">
+      <tbody>
+        <tr>
+          <td>Employee Details</td>
+          <td><span class="success">Success:</span> <span class="value">{{ validationSummary.successCount }}</span>
+          </td>
+        </tr>
+        <tr>
+          <td>Total number of records
+            <span class="value"> {{ validationSummary.totalRecords }}</span>
+          </td>
+          <td>Failure <span class="failure">{{ validationSummary.failureCount }}</span> </td>
+        </tr>
+        <tr>
+        </tr>
+      </tbody>
+    </table>
+    <div class="accept-button-container">
+      <button class="accept-button">Accept the report</button>
+    </div>
+  </div>
+  }
+</div>

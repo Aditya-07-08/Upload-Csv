@@ -1,0 +1,26 @@
+<div class="uploaded-data-container">
+  <h2>Uploaded CSV Data</h2>
+  <table class="uploaded-data-table" *ngIf="uploadedData && uploadedData.length > 0">
+    <thead>
+      <tr>
+        <th *ngFor="let header of uploadedData[0]">{{ header }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of uploadedData.slice(1)">
+        <ng-container *ngFor="let cell of row; let columnIndex = index">
+          <td [ngClass]="{
+              'error-cell': isEmptyValue(cell) || !isDataTypeCorrect(cell, columnIndex)
+            }" class="tooltip-container">
+            <span *ngIf="isEmptyValue(cell)" class="tooltip-text">Empty value</span>
+            <span *ngIf="!isEmptyValue(cell) && !isDataTypeCorrect(cell, columnIndex)" class="tooltip-text">
+              Data type mismatch, expected {{ columnDefinitions[columnIndex].dataType }}
+            </span>
+            {{ cell }}
+          </td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+  <p *ngIf="uploadedData && uploadedData.length === 0">No data to display</p>
+  <button class="proceed-button" (click)="proceed()">Proceed</button>
